@@ -48,42 +48,6 @@ AdminLTE App
 <script src="<?= base_url() ?>asset/chart/dist/Chart.min.js"></script>
 <script src="<?= base_url() ?>asset/chart/samples/utils.js"></script>
 <script>
-	$(function() {
-		//Initialize Select2 Elements
-		$('.select2').select2()
-
-	})
-</script>
-<script>
-	$(function() {
-		$("#example1").DataTable({
-			"responsive": true,
-			"autoWidth": false,
-		});
-
-		//Date range picker
-		$('#reservationdate').datetimepicker({
-			format: 'YYYY-MM-DD'
-		});
-	});
-</script>
-<script>
-	$(function() {
-		$(".example1").DataTable({
-			"responsive": true,
-			"autoWidth": false,
-		});
-	});
-</script>
-<script>
-	window.setTimeout(function() {
-		$(".alert").fadeTo(500, 0).slideUp(500, function() {
-			$(this).remove();
-		});
-	}, 3000)
-</script>
-
-<script>
 	<?php
 	foreach ($member as $key => $value) {
 		$total[] = $value->jml;
@@ -287,6 +251,144 @@ AdminLTE App
 				}]
 			}
 		}
+	});
+</script>
+<script>
+	$(function() {
+		//Initialize Select2 Elements
+		$('.select2').select2()
+
+	})
+</script>
+<script>
+	$(function() {
+		$(".example1").DataTable({
+			"responsive": true,
+			"autoWidth": false,
+		});
+
+		//Date range picker
+		$('#reservationdate').datetimepicker({
+			format: 'YYYY-MM-DD'
+		});
+	});
+</script>
+
+<script>
+	window.setTimeout(function() {
+		$(".alert").fadeTo(500, 0).slideUp(500, function() {
+			$(this).remove();
+		});
+	}, 3000)
+</script>
+
+<script>
+	<?php
+	$data = $this->db->query("SELECT SUM(qty) as qty, nama_tiket FROM `tbl_po_tiket` JOIN tbl_detail_po_tiket ON tbl_po_tiket.id_po_tiket=tbl_detail_po_tiket.id_po_tiket JOIN tbl_tiket ON tbl_tiket.id_tiket=tbl_detail_po_tiket.id_tiket GROUP BY tbl_tiket.id_tiket")->result();
+	foreach ($data as $key => $value) {
+		$jumlah[] = $value->qty;
+		$nama[] = $value->nama_tiket;
+	}
+	?>
+	var ctx = document.getElementById('grafik_favorite');
+	var grafik = new Chart(ctx, {
+		type: 'bar',
+		data: {
+			labels: <?= json_encode($nama) ?>,
+			datasets: [{
+				label: 'Grafik Tiket Favorite',
+				data: <?= json_encode($jumlah) ?>,
+				backgroundColor: [
+					'rgba(201, 76, 76, 0.3)',
+					'rgba(201, 77, 77, 1)',
+					'rgba(0, 140, 162, 1)',
+					'rgba(158, 109, 8, 1)',
+					'rgba(201, 76, 76, 0.8)',
+					'rgba(0, 129, 212, 1)',
+					'rgba(201, 77, 201, 1)',
+					'rgba(255, 207, 207, 1)',
+					'rgba(201, 77, 77, 1)',
+					'rgba(128, 98, 98, 1)',
+					'rgba(0, 0, 0, 1)',
+					'rgba(128, 128, 128, 1)',
+					'rgba(255, 99, 132, 0.80)',
+					'rgba(54, 162, 235, 0.80)',
+					'rgba(255, 206, 86, 0.80)',
+					'rgba(75, 192, 192, 0.80)',
+					'rgba(153, 102, 255, 0.80)',
+					'rgba(255, 159, 64, 0.80)',
+					'rgba(201, 76, 76, 0.3)',
+					'rgba(201, 77, 77, 1)',
+					'rgba(0, 140, 162, 1)',
+					'rgba(158, 109, 8, 1)',
+					'rgba(201, 76, 76, 0.8)',
+					'rgba(0, 129, 212, 1)',
+					'rgba(201, 77, 201, 1)',
+					'rgba(255, 207, 207, 1)',
+					'rgba(201, 77, 77, 1)',
+					'rgba(128, 98, 98, 1)',
+					'rgba(0, 0, 0, 1)',
+					'rgba(128, 128, 128, 1)'
+				],
+				borderColor: [
+					'rgba(201, 76, 76, 0.3)',
+					'rgba(201, 77, 77, 1)',
+					'rgba(0, 140, 162, 1)',
+					'rgba(158, 109, 8, 1)',
+					'rgba(201, 76, 76, 0.8)',
+					'rgba(0, 129, 212, 1)',
+					'rgba(201, 77, 201, 1)',
+					'rgba(255, 207, 207, 1)',
+					'rgba(201, 77, 77, 1)',
+					'rgba(128, 98, 98, 1)',
+					'rgba(0, 0, 0, 1)',
+					'rgba(128, 128, 128, 1)',
+					'rgba(255, 99, 132, 0.80)',
+					'rgba(54, 162, 235, 0.80)',
+					'rgba(255, 206, 86, 0.80)',
+					'rgba(75, 192, 192, 0.80)',
+					'rgba(153, 102, 255, 0.80)',
+					'rgba(255, 159, 64, 0.80)',
+					'rgba(201, 76, 76, 0.3)',
+					'rgba(201, 77, 77, 1)',
+					'rgba(0, 140, 162, 1)',
+					'rgba(158, 109, 8, 1)',
+					'rgba(201, 76, 76, 0.8)',
+					'rgba(0, 129, 212, 1)',
+					'rgba(201, 77, 201, 1)',
+					'rgba(255, 207, 207, 1)',
+					'rgba(201, 77, 77, 1)',
+					'rgba(128, 98, 98, 1)',
+					'rgba(0, 0, 0, 1)',
+					'rgba(128, 128, 128, 1)'
+				],
+				fill: false,
+				borderWidth: 1
+			}]
+		},
+		options: {
+			scales: {
+				yAxes: [{
+					ticks: {
+						beginAtZero: true
+					}
+				}]
+			}
+		}
+	});
+</script>
+<script>
+	console.log = function() {}
+	$("#tiket").on('change', function() {
+
+		$(".nama").html($(this).find(':selected').attr('data-nama'));
+		$(".nama").val($(this).find(':selected').attr('data-nama'));
+
+		$(".harga").html($(this).find(':selected').attr('data-harga'));
+		$(".harga").val($(this).find(':selected').attr('data-harga'));
+
+		$(".deskripsi").html($(this).find(':selected').attr('data-deskripsi'));
+		$(".deskripsi").val($(this).find(':selected').attr('data-deskripsi'));
 	});
 </script>
 </body>

@@ -10,7 +10,22 @@ class mTransaksi extends CI_Model
 		$this->db->select('*');
 		$this->db->from('tbl_po_tiket');
 		$this->db->join('tbl_wisatawan', 'tbl_po_tiket.id_wisatawan = tbl_wisatawan.id_wisatawan', 'left');
+		$this->db->where('type_po=0');
 		return $this->db->get()->result();
+	}
+	public function transaksi_langsung()
+	{
+		$this->db->select('*');
+		$this->db->from('tbl_po_tiket');
+		$this->db->join('tbl_wisatawan', 'tbl_po_tiket.id_wisatawan = tbl_wisatawan.id_wisatawan', 'left');
+		$this->db->where('type_po=1');
+		return $this->db->get()->result();
+	}
+	public function detail_transaksilangsung($id_transaksi)
+	{
+		$data['transaksi'] = $this->db->query("SELECT * FROM `tbl_po_tiket` WHERE tbl_po_tiket.id_po_tiket='" . $id_transaksi . "'")->row();
+		$data['tiket'] = $this->db->query("SELECT * FROM `tbl_po_tiket`JOIN tbl_detail_po_tiket ON tbl_po_tiket.id_po_tiket = tbl_detail_po_tiket.id_po_tiket JOIN tbl_tiket ON tbl_tiket.id_tiket = tbl_detail_po_tiket.id_tiket  WHERE tbl_po_tiket.id_po_tiket='" . $id_transaksi . "'")->result();
+		return $data;
 	}
 
 	//wisatawan

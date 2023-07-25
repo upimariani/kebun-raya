@@ -17,7 +17,8 @@ class cHome extends CI_Controller
 		$data = array(
 			'tiket' => $this->mHome->tiket(),
 			'ulasan' => $this->mHome->ulasan(),
-			'profile' => $this->mProfile->profile()
+			'profile' => $this->mProfile->profile(),
+			'tiket_favorite' => $this->mHome->diskon_recomended()
 		);
 		$this->load->view('Wisatawan/Layouts/head');
 		$this->load->view('Wisatawan/Layouts/header');

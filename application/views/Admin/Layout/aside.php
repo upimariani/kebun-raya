@@ -90,7 +90,26 @@
 						</p>
 					</a>
 				</li>
-
+				<li class="nav-item">
+					<a href="<?= base_url('Admin/cTransaksiLangsung') ?>" class="nav-link  <?php if ($this->uri->segment(1) == 'Admin' && $this->uri->segment(2) == 'cTransaksiLangsung') {
+																								echo 'active';
+																							}  ?>">
+						<i class="nav-icon fas fa-shopping-bag"></i>
+						<p>
+							Transaksi Langsung
+						</p>
+					</a>
+				</li>
+				<li class="nav-item">
+					<a href="<?= base_url('Admin/cFavorite') ?>" class="nav-link  <?php if ($this->uri->segment(1) == 'Admin' && $this->uri->segment(2) == 'cFavorite') {
+																						echo 'active';
+																					}  ?>">
+						<i class="nav-icon fas fa-user-check"></i>
+						<p>
+							Favorite Wisatawan
+						</p>
+					</a>
+				</li>
 				<li class="nav-item">
 					<a href="<?= base_url('cAuth/logout') ?>" class="nav-link">
 						<i class="nav-icon fas fa-sign-out-alt"></i>

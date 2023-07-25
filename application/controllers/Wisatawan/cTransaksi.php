@@ -26,7 +26,8 @@ class cTransaksi extends CI_Controller
 	{
 		$profile = $this->mProfile->profile();
 		$data = array(
-			'detail' => $this->mTransaksi->detail_transaksi($id, $profile->id_wisatawan),
+			'id' => $id,
+			'detail' => $this->mTransaksi->detail_transaksi($id, $profile->member),
 			'profile' => $this->mProfile->profile()
 		);
 		$this->load->view('Wisatawan/Layouts/head');

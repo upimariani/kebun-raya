@@ -37,6 +37,15 @@ class cTransaksi extends CI_Controller
 		$this->session->set_flashdata('success', 'Pesanan Berhasil Dikonfirmasi!');
 		redirect('Admin/cTransaksi');
 	}
+	public function konfirmasi_datang($id)
+	{
+		$data = array(
+			'status_order' => '3'
+		);
+		$this->mTransaksi->update_status($id, $data);
+		$this->session->set_flashdata('success', 'Pesanan Selesai!');
+		redirect('Admin/cTransaksi');
+	}
 }
 
 /* End of file cTransaksi.php */

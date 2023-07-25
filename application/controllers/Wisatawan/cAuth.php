@@ -85,6 +85,7 @@ class cAuth extends CI_Controller
 		$this->session->unset_userdata('id_wisatawan');
 		$this->session->unset_userdata('nama_wisatawan');
 		$this->session->unset_userdata('member');
+		$this->cart->destroy();
 		$this->session->set_flashdata('success', 'Anda Berhasil Logout!!!');
 		redirect('Wisatawan/cAuth', 'refresh');
 	}

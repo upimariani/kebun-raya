@@ -34,6 +34,7 @@
 				<tbody>
 					<?php
 					$no = 1;
+					$total = 0;
 					foreach ($detail['tiket'] as $key => $value) {
 					?>
 						<tr>
@@ -54,10 +55,13 @@
 							<td><?= $value->qty ?></td>
 							<?php
 							if ($profile->member == $value->stat_member) {
+								$total += ($value->qty * ($value->harga - ($value->diskon / 100 * $value->harga)));
 							?>
 								<td>Rp. <?= number_format($value->qty * ($value->harga - ($value->diskon / 100 * $value->harga)))  ?></td>
+
 							<?php
 							} else {
+								$total += ($value->qty * $value->harga);
 							?>
 								<td>Rp. <?= number_format($value->qty * $value->harga) ?></td>
 							<?php
@@ -75,13 +79,29 @@
 						<td></td>
 						<td></td>
 						<td>
+							<h5>Diskon Favorite</h5>
+						</td>
+						<td>
+							<?php
+							$fav = $total - $detail['transaksi']->total_bayar;
+							?>
+							<h5>Rp. <?= number_format($fav) ?></h5>
+						</td>
+					</tr>
+					<tr>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td>
 							<h5>Subtotal</h5>
 						</td>
 						<td>
 							<h5>Rp. <?= number_format($detail['transaksi']->total_bayar) ?></h5>
+							<?php
+							$fav = $total - $detail['transaksi']->total_bayar;
+							?>
 						</td>
 					</tr>
-
 					<tr class="shipping_area">
 						<td></td>
 						<td></td>
@@ -92,7 +112,7 @@
 							<?php
 							if ($detail['transaksi']->status_order == '0') {
 							?>
-								<?php echo form_open_multipart('Wisatawan/cTransaksi/bayar/' . $value->id_po_tiket) ?>
+								<?php echo form_open_multipart('Wisatawan/cTransaksi/bayar/' . $id) ?>
 								<div class="shipping_box">
 									<h5 class="mb-2">
 										Silahkan Melakukan Pembayaran<br>
@@ -127,10 +147,8 @@
 							<?php
 							}
 							?>
-
 						</td>
 					</tr>
-
 				</tbody>
 			</table>
 		</div>
