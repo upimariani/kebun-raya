@@ -79,14 +79,16 @@
 						</li>
 					</ul>
 				</li>
-
+				<?php
+				$notif = $this->db->query("SELECT COUNT(id_po_tiket) as notif FROM `tbl_po_tiket` WHERE status_order='0'")->row();
+				?>
 				<li class="nav-item">
 					<a href="<?= base_url('Admin/cTransaksi') ?>" class="nav-link  <?php if ($this->uri->segment(1) == 'Admin' && $this->uri->segment(2) == 'cTransaksi') {
 																						echo 'active';
 																					}  ?>">
 						<i class="nav-icon fas fa-shopping-cart"></i>
 						<p>
-							Transaksi Wisatawan
+							Transaksi Wisatawan <span class="badge badge-danger"><?= $notif->notif ?></span>
 						</p>
 					</a>
 				</li>

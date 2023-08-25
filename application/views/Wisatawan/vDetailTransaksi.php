@@ -20,17 +20,38 @@
 <!--================Tracking Box Area =================-->
 <section class="tracking_box_area section_gap">
 	<div class="container">
+
 		<div class="cart_inner">
+
 			<table class="table">
-				<thead>
+				<tr>
+					<td>
+						<h5>Tanggal Transaksi</h5>
+					</td>
+					<td><?= $detail['transaksi']->tgl_po_tiket ?></td>
+				</tr>
+				<?php
+				if ($detail['transaksi']->stat_bayar == '1') {
+				?>
 					<tr>
-						<th>No</th>
-						<th>Nama Tiket</th>
-						<th>Harga</th>
-						<th>Qty</th>
-						<th>Subtotal</th>
+						<td>
+							<h5>Bukti Pembayaran</h5>
+						</td>
+						<td><img style="width: 100px;" src="<?= base_url('asset/bukti-pembayaran/' . $detail['transaksi']->bukti_bayar) ?>"></td>
+
 					</tr>
-				</thead>
+				<?php
+				}
+				?>
+
+
+				<tr>
+					<th>No</th>
+					<th>Nama Tiket</th>
+					<th>Harga</th>
+					<th>Qty</th>
+					<th>Subtotal</th>
+				</tr>
 				<tbody>
 					<?php
 					$no = 1;
