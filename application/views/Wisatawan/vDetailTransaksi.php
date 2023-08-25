@@ -96,7 +96,7 @@
 
 					<?php echo form_close(); ?>
 					<tr>
-						<td></td>
+						<td><button onclick="window.print()" class="btn btn-success">Cetak</button></td>
 						<td></td>
 						<td></td>
 						<td>
