@@ -30,7 +30,8 @@ class cProfile extends CI_Controller
 			'jk' => $this->input->post('jk'),
 			'username' => $this->input->post('username'),
 			'password' => $this->input->post('password'),
-			'no_hp_wisatawan' => $this->input->post('no_hp')
+			'no_hp_wisatawan' => $this->input->post('no_hp'),
+			'email' => $this->input->post('email'),
 		);
 		$this->mProfile->update_profile($id, $data);
 		$this->session->set_flashdata('success', 'Data Profile berhasil diperbaharui!!!');

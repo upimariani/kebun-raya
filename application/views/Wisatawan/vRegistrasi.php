@@ -66,15 +66,20 @@
 					<input type="date" class="form-control" id="email" name="tgl" placeholder="Password">
 					<?= form_error('tgl', '<small class="text-danger">', '</small>') ?>
 				</div>
-				<div class="col-md-12 form-group">
+				<div class="col-md-6 form-group">
 					<label>Jenis Kelamin</label><br>
-					<select class="shipping_select" name="jk" required>
+					<select class="form-select" name="jk" required>
 						<option value="">--Pilih Jenis Kelamin---</option>
 						<option value="Perempuan">Perempuan</option>
 						<option value="Laki - Laki">Laki - Laki</option>
 
 					</select>
 					<?= form_error('jk', '<small class="text-danger">', '</small>') ?>
+				</div>
+				<div class="col-md-6 form-group">
+					<label>Email</label>
+					<input type="text" class="form-control" id="email" name="email" placeholder="Masukkan Email">
+					<?= form_error('email', '<small class="text-danger">', '</small>') ?>
 				</div>
 				<div class="col-md-6 form-group">
 					<label>Username</label>

@@ -91,7 +91,7 @@
 								<input class="form-control" name="password" id="email" value="<?= $profile->password ?>" type="text" placeholder="Enter email address">
 							</div>
 						</div>
-						<div class="col-12">
+						<div class="col-6">
 							<div class="form-group">
 								<select class="form-select" name="jk">
 									<option value="Perempuan" <?php if ($profile->jk == 'Perempuan') {
@@ -102,6 +102,10 @@
 																} ?>>Laki - Laki</option>
 								</select>
 							</div>
+						</div>
+						<div class="col-md-6 form-group">
+							<input type="text" class="form-control" id="email" value="<?= $profile->email ?>" name="email" placeholder="Masukkan Email">
+
 						</div>
 					</div>
 					<div class="form-group mt-lg-3">
